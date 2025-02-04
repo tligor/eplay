@@ -18,20 +18,32 @@ export const cores = {
 }
 
 export const GlobalCss = createGlobalStyle`
-* {
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Roboto, sans-serif;
     list-style: none;
   }
-  body{
-    background-color: ${cores.rosa};
+
+  body {
+    background-color: ${cores.rosa}; // Cor de fundo padrão (Home)
     color: ${cores.rosa};
   }
 
-  .container{
-    max-width: 100vw;
-  margin: 0 auto;
+  body.pagina-prato1 {
+    background-color: ${cores.branco}; // Cor de fundo na página Prato1
+    color: ${cores.branco};
   }
-  `
+
+  header {
+    background-color: ${cores.rosa}; // Cor fixa para o header em todas as páginas
+    padding: 16px;
+    text-align: center;
+  }
+
+  .container {
+    max-width: 100vw;
+    margin: 0 auto;
+  }
+`

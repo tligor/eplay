@@ -1,8 +1,11 @@
 import styled from 'styled-components'
 import { cores } from '../../styles'
 
-export const Card = styled.div`
-  background-color: #fff;
+export const Card = styled.div<{ isHome?: boolean }>`
+  background-color: ${(props) =>
+    props.isHome
+      ? cores.brancoSeco
+      : cores.rosa}; // brancoSeco na Home, rosa na Página1
   overflow: hidden;
   width: 100%;
   max-width: 472px;
@@ -15,8 +18,10 @@ export const Card = styled.div`
 export const Imagem = styled.img<{ isHome?: boolean }>`
   width: 100%;
   height: ${(props) =>
-    props.isHome ? '200px' : '250px'}; // 200px na Home, 250px na Prato1
+    props.isHome ? '200px' : '167px'}; // 200px na Home, 167px na Página1
   object-fit: cover;
+  padding: ${(props) =>
+    props.isHome ? '0px' : '8px'}; // 0px na Home, 8px na Página1
 `
 
 export const Infos = styled.div`
@@ -47,6 +52,7 @@ export const Titulo = styled.h2`
   font-weight: bold;
   justify-content: space-between;
 `
+
 export const Nota = styled.div`
   font-size: 18px;
   font-weight: bold;
@@ -56,6 +62,7 @@ export const Nota = styled.div`
     margin-left: 8px;
   }
 `
+
 export const Conteudo = styled.p`
   height: 82px;
   margin: 16px 0;

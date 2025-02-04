@@ -15,12 +15,12 @@ export const List = styled.ul<{ isHome?: boolean }>`
   display: grid;
   grid-template-columns: ${(props) =>
     props.isHome ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)'};
-  column-gap: 24px;
+  column-gap: ${(props) => (props.isHome ? '24px' : '40px')};
   margin-top: 40px;
   width: 100%;
   div {
-    width: auto;
-    height: 398px;
+    width: ${(props) => (props.isHome ? 'auto' : '320px')};
+    height: ${(props) => (props.isHome ? '398px' : '338px')};
   }
 `
 

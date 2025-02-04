@@ -10,7 +10,8 @@ export const HeaderBar = styled.header`
   display: flex;
   text-align: center;
   background-image: url(${bgheader});
-  flex-direction: column; // Para empilhar os elementos verticalmente
+  flex-direction: column;
+  color: ${cores.rosa};
 
   img {
     width: 125px;
@@ -36,7 +37,7 @@ export const HeaderBar = styled.header`
       bottom: -10px;
       left: 50%;
       transform: translateX(-50%);
-      color: white;
+      color: ${cores.rosa}; // Cor do texto alterada para rosa
 
       // Responsividade
       @media (max-width: ${breakpoints.lg}) {
@@ -69,6 +70,7 @@ export const LinkItem = styled.li`
 
 export const LinkCart = styled.a`
   display: flex;
+  color: ${cores.rosa}; // Cor do texto alterada para rosa
 
   img {
     margin-left: 16px;

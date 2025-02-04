@@ -1,5 +1,3 @@
-// components/Product.tsx
-
 import { useNavigate } from 'react-router-dom'
 import Button from '../Button'
 import Tag from '../Tag'
@@ -31,7 +29,7 @@ const Product = ({
   title,
   nota,
   id,
-  isHome = true
+  isHome = true // Valor padrão é true (Home)
 }: Props) => {
   const navigate = useNavigate()
 
@@ -40,20 +38,25 @@ const Product = ({
   }
 
   return (
-    <Card>
-      <Infos>
-        {infos.map((info) => (
-          <Tag key={info}>{info}</Tag>
-        ))}
-      </Infos>
-      <Imagem src={image} alt={title} />
+    <Card isHome={isHome}>
+      {/* Renderiza Infos e Tags apenas se isHome for true */}
+      {isHome && (
+        <Infos>
+          {infos.map((info) => (
+            <Tag key={info}>{info}</Tag>
+          ))}
+        </Infos>
+      )}
+      <Imagem src={image} alt={title} isHome={isHome} />
       <Descricao>
         <div>
           <Titulo>{title}</Titulo>
-          <Nota>
-            {nota}
-            <img src={star} alt="Rating" />
-          </Nota>
+          {isHome && (
+            <Nota>
+              {nota}
+              <img src={star} alt="Rating" />
+            </Nota>
+          )}
         </div>
         <Conteudo>{description}</Conteudo>
         <Button

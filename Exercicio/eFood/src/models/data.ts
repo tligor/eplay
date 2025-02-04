@@ -71,6 +71,52 @@ export const sndPage: Pratos[] = [
       'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
     image: pizza, // Agora a imagem da pizza está corretamente importada
     infos: ['Destaque da Semana', 'Italiana']
+  },
+  {
+    id: 2,
+    title: 'Pizza Marguerita',
+    nota: 10,
+    description:
+      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
+    image: pizza, // Agora a imagem da pizza está corretamente importada
+    infos: ['Destaque da Semana', 'Italiana']
+  },
+  {
+    id: 3,
+    title: 'Pizza Marguerita',
+    nota: 10,
+    description:
+      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
+    image: pizza, // Agora a imagem da pizza está corretamente importada
+    infos: ['Destaque da Semana', 'Italiana']
+  },
+  {
+    id: 4,
+    title: 'Pizza Marguerita',
+    nota: 10,
+    description:
+      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
+    image: pizza, // Agora a imagem da pizza está corretamente importada
+    infos: ['Destaque da Semana', 'Italiana']
+  },
+  {
+    id: 5,
+    title: 'Pizza Marguerita',
+    nota: 10,
+    description:
+      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
+    image: pizza, // Agora a imagem da pizza está corretamente importada
+    infos: ['Destaque da Semana', 'Italiana']
+  },
+  {
+    id: 6,
+    title: 'Pizza Marguerita',
+    nota: 10,
+    description:
+      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
+    image: pizza, // Agora a imagem da pizza está corretamente importada
+    infos: ['Destaque da Semana', 'Italiana']
   }
+
   // Outros pratos podem ser adicionados aqui...
 ]
