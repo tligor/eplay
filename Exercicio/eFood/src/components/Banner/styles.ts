@@ -1,36 +1,26 @@
 import styled from 'styled-components'
-import { TagContainer } from '../Tag/styles'
 
+export const Container = styled.div`
+  position: relative;
+`
 export const Imagem = styled.div`
   width: 100%;
-  height: 560px;
-  display: block;
+  height: 280px;
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
   font-weight: bold;
-
-  .container {
-    position: relative;
-    padding-top: 340px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-  }
-
-  ${TagContainer} {
-    position: absolute;
-    top: 32px;
-  }
-`
-export const Titulo = styled.h2`
-  font-size: 36px;
-  max-width: 450px;
 `
 export const Precos = styled.p`
   font-size: 24px;
   margin-top: 24px;
-
-  span {
-    text-decoration: line-through;
-  }
+`
+export const Title = styled.h3`
+  color: white;
+  position: absolute;
+  top: 215px;
+  left: 170px;
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 37.5px;
 `

@@ -26,6 +26,7 @@ const ProductsList = ({ background, pratos, title }: Props) => {
               image={prato.image}
               infos={prato.infos}
               nota={prato.nota}
+              id={prato.id}
             />
           ))}
         </List>

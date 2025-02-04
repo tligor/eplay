@@ -1,20 +1,15 @@
 import { BrowserRouter } from 'react-router-dom'
-
-import Header from './components/Header'
 import { GlobalCss } from './styles'
 
-import Rotas from './routes'
-import Footer from './components/Footer'
+import Rotas from './routes' // Certifique-se de que Rotas está corretamente importado
 
 function App() {
   return (
     <BrowserRouter>
       <GlobalCss />
       <div className="container">
-        <Header />
+        <Rotas /> {/* As páginas serão carregadas através das rotas */}
       </div>
-      <Rotas />
-      <Footer />
     </BrowserRouter>
   )
 }

@@ -1,9 +1,11 @@
+import Header from '../../components/Header' // Importando o Header
+import Footer from '../../components/Footer' // Importando o Footer
 import ProductsList from '../../components/ProductsList'
 import hiokisushi from '../../assets/pratos/Hioki Sushi/hiokisushi.png'
 import ladocevita from '../../assets/pratos/La Dolce Vita Trattoria/image 1.png'
 import Pratos from '../../models/Pratos'
 
-const promocoes: Pratos[] = [
+export const promocoes: Pratos[] = [
   {
     id: 1,
     title: 'Hioki Sushi',
@@ -62,7 +64,10 @@ const promocoes: Pratos[] = [
 
 const Home = () => (
   <>
+    <Header />
     <ProductsList pratos={promocoes} title="" background="gray" />
+    {/* Passando os pratos para ProductsList */}
+    <Footer />
   </>
 )
 

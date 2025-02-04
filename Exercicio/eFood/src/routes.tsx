@@ -1,12 +1,15 @@
 import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
-import Categories from './pages/Categories'
+import Prato from './pages/Prato/1' // Usando uma página genérica para os pratos
 
-const Rotas = () => (
-  <Routes>
-    <Route path="/" element={<Home />} />
-    <Route path="/categorias" element={<Categories />} />
-  </Routes>
-)
+const Rotas = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/prato/:pratoId" element={<Prato />} />{' '}
+      {/* Usando o parâmetro dinâmico */}
+    </Routes>
+  )
+}
 
 export default Rotas
