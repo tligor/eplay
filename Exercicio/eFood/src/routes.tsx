@@ -6,7 +6,7 @@ const Rotas = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/prato/:pratoId" element={<Prato />} />{' '}
+      <Route path="/prato/:pratoId" element={<Prato />} />
       {/* Usando o parâmetro dinâmico */}
     </Routes>
   )

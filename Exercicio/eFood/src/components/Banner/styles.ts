@@ -24,3 +24,12 @@ export const Title = styled.h3`
   font-weight: 900;
   line-height: 37.5px;
 `
+export const Categoria = styled.h3`
+  color: white;
+  position: absolute;
+  top: 0px;
+  left: 170px;
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 37.5px;
+`

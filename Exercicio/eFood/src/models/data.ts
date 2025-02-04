@@ -1,10 +1,9 @@
-import Header from '../../components/Header' // Importando o Header
-import Footer from '../../components/Footer' // Importando o Footer
-import ProductsList from '../../components/ProductsList'
-import hiokisushi from '../../assets/pratos/Hioki Sushi/hiokisushi.png'
-import ladocevita from '../../assets/pratos/La Dolce Vita Trattoria/image 1.png'
-import Pratos from '../../models/Pratos'
+import hiokisushi from '../assets/pratos/Hioki Sushi/hiokisushi.png'
+import ladocevita from '../assets/pratos/La Dolce Vita Trattoria/image 1.png'
+import pizza from '../assets/pratos/2ndPage/pizzamarguerita.png' // Importando a imagem da pizza
+import Pratos from '../models/Pratos' // Certificando-se de que o tipo Pratos está sendo importado corretamente
 
+// Definindo o tipo 'Pratos' para garantir que os dados sigam o formato esperado
 export const promocoes: Pratos[] = [
   {
     id: 1,
@@ -62,12 +61,16 @@ export const promocoes: Pratos[] = [
   }
 ]
 
-const Home = () => (
-  <>
-    <Header />
-    <ProductsList pratos={promocoes} title="" background="gray" isHome={true} />
-    <Footer />
-  </>
-)
-
-export default Home
+// Definindo o tipo 'PratosNovos' com a mesma estrutura de 'Pratos'
+export const sndPage: Pratos[] = [
+  {
+    id: 1,
+    title: 'Pizza Marguerita',
+    nota: 10,
+    description:
+      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
+    image: pizza, // Agora a imagem da pizza está corretamente importada
+    infos: ['Destaque da Semana', 'Italiana']
+  }
+  // Outros pratos podem ser adicionados aqui...
+]

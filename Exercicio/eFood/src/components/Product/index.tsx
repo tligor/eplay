@@ -1,3 +1,5 @@
+// components/Product.tsx
+
 import { useNavigate } from 'react-router-dom'
 import Button from '../Button'
 import Tag from '../Tag'
@@ -18,10 +20,19 @@ type Props = {
   infos: string[]
   image: string
   nota: number
-  id: number // Alterando 'key' para 'id' para refletir corretamente o ID do prato
+  id: number
+  isHome?: boolean
 }
 
-const Product = ({ description, image, infos, title, nota, id }: Props) => {
+const Product = ({
+  description,
+  image,
+  infos,
+  title,
+  nota,
+  id,
+  isHome = true
+}: Props) => {
   const navigate = useNavigate()
 
   const handleNavigate = () => {

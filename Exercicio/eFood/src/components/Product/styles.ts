@@ -12,9 +12,10 @@ export const Card = styled.div`
   position: relative;
 `
 
-export const Imagem = styled.img`
+export const Imagem = styled.img<{ isHome?: boolean }>`
   width: 100%;
-  height: 200px;
+  height: ${(props) =>
+    props.isHome ? '200px' : '250px'}; // 200px na Home, 250px na Prato1
   object-fit: cover;
 `
 
@@ -37,7 +38,7 @@ export const Descricao = styled.div`
   div {
     display: flex;
     justify-content: space-between;
-    max-height: 45px;
+    max-height: 27px;
     align-items: center;
   }
 `
