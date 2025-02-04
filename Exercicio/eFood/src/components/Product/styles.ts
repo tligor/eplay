@@ -30,16 +30,15 @@ export const Descricao = styled.div`
   flex-direction: column;
   border: 1px solid ${cores.rosa};
   border-top: none;
-
   &:nth-child(n + 3) {
     padding: 8px;
   }
 
   div {
     display: flex;
-    justify-content: space-between;
-    max-height: 27px;
     align-items: center;
+    justify-content: space-between;
+    max-height: 25px;
   }
 `
 
@@ -57,20 +56,10 @@ export const Nota = styled.div`
     margin-left: 8px;
   }
 `
-
-export const Button = styled.button`
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 8px 16px;
-  cursor: pointer;
-  font-size: 14px;
-  margin-top: 16px;
-
-  &:hover {
-    background-color: #0056b3;
-  }
-`
 export const Conteudo = styled.p`
-  height: 90px;
+  height: 82px;
+  margin: 16px 0;
+  overflow-wrap: break-word;
+  text-align: left;
+  font-size: 15px;
 `

@@ -5,8 +5,6 @@ import { cores } from '../../styles'
 
 export const ButtonContainer = styled.button`
   border: 2px solid ${cores.rosa};
-  margin-top: 16px;
-  margin-bottom: 8px;
   color: ${cores.cinza};
   background-color: ${cores.rosa};
   font-size: 14px;

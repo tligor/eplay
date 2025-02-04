@@ -20,7 +20,7 @@ export const List = styled.ul<{ isHome?: boolean }>`
   width: 100%;
   div {
     width: auto;
-    height: 400px;
+    height: 398px;
   }
 `
 
