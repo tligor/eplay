@@ -1,27 +1,24 @@
-class Game {
-  category: string
+class Pratos {
+  nota: number
   description: string
   image: string
   infos: string[]
-  system: string
   title: string
   id: number
   constructor(
     id: number,
-    category: string,
+    nota: number,
     description: string,
     image: string,
     infos: string[],
-    system: string,
     title: string
   ) {
-    this.category = category
+    this.nota = nota
     this.description = description
     this.image = image
     this.infos = infos
-    this.system = system
     ;(this.title = title), (this.id = id)
   }
 }
 
-export default Game
+export default Pratos

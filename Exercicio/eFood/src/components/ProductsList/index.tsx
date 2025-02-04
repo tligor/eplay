@@ -1,30 +1,37 @@
-import Game from '../../models/Game'
+import Pratos from '../../models/Pratos'
 import Product from '../Product'
 import { Container, List } from './styles'
 
 export type Props = {
-  title: string
+  title?: string
   background: 'gray' | 'black'
-  games: Game[]
+  pratos: Pratos[]
 }
-const ProductsList = ({ background, games }: Props) => (
-  <Container background={background}>
-    <div className="container">
-      <List>
-        {games.map((game) => (
-          <Product
-            key={game.id}
-            category={game.category}
-            description={game.description}
-            image={game.image}
-            infos={game.infos}
-            system={game.system}
-            title={game.title}
-          />
-        ))}
-      </List>
-    </div>
-  </Container>
-)
+
+const ProductsList = ({ background, pratos, title }: Props) => {
+  if (!pratos || pratos.length === 0) {
+    return <div>Nenhum prato disponível.</div>
+  }
+
+  return (
+    <Container background={background}>
+      <div className="container">
+        {title && <h2>{title}</h2>}
+        <List>
+          {pratos.map((prato) => (
+            <Product
+              key={prato.id}
+              title={prato.title}
+              description={prato.description}
+              image={prato.image}
+              infos={prato.infos}
+              nota={prato.nota}
+            />
+          ))}
+        </List>
+      </div>
+    </Container>
+  )
+}
 
 export default ProductsList

@@ -1,25 +1,49 @@
+import Button from '../Button'
 import Tag from '../Tag'
-import { Card, Descricao, Titulo, Infos, Imagem } from './styles'
+import {
+  Card,
+  Descricao,
+  Titulo,
+  Infos,
+  Imagem,
+  Conteudo,
+  Nota
+} from './styles'
+import star from '../../assets/images.nova/star.svg'
 
 type Props = {
   title: string
-  category: string
-  system: string
   description: string
   infos: string[]
   image: string
+  nota: number
 }
 
-const Product = ({ description, image, infos, title }: Props) => (
+const Product = ({ description, image, infos, title, nota }: Props) => (
   <Card>
-    <Imagem src={image} alt={title} />
     <Infos>
       {infos.map((info) => (
         <Tag key={info}>{info}</Tag>
       ))}
     </Infos>
-    <Titulo>{title}</Titulo>
-    <Descricao>{description}</Descricao>
+    <Imagem src={image} alt={title} />
+    <Descricao>
+      <div>
+        <Titulo>{title}</Titulo>
+        <Nota>
+          {nota}
+          <img src={star} alt="Rating" />
+        </Nota>
+      </div>
+      <Conteudo>{description}</Conteudo>
+      <Button
+        type="button"
+        title="Saiba mais"
+        onClick={() => console.log('Navegar para detalhes')}
+      >
+        Saiba mais
+      </Button>
+    </Descricao>
   </Card>
 )
 

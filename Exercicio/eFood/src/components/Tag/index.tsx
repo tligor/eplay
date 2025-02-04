@@ -1,12 +1,14 @@
 import { TagContainer } from './styles'
+import { Props } from './types/types'
 
-export type Props = {
-  size?: 'small' | 'big'
-  children: string
+const Tag = ({ children, size = 'small' }: Props) => {
+  // Validação de children
+  if (!children) {
+    console.warn('A Tag deve ter um conteúdo (children).')
+    return null
+  }
+
+  return <TagContainer size={size}>{children}</TagContainer>
 }
-
-const Tag = ({ children, size = 'small' }: Props) => (
-  <TagContainer size={size}>{children}</TagContainer>
-)
 
 export default Tag
