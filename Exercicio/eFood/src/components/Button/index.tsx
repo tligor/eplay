@@ -6,18 +6,39 @@ type Props = {
   to?: string
   onClick?: () => void
   children: string
+  fullWidth?: boolean
+  isHome?: boolean
 }
 
-const Button = ({ type, title, to, onClick, children }: Props) => {
+const Button = ({
+  type,
+  title,
+  to,
+  onClick,
+  children,
+  fullWidth = false,
+  isHome = true
+}: Props) => {
   if (type === 'button') {
     return (
-      <ButtonContainer type="button" title={title} onClick={onClick}>
+      <ButtonContainer
+        type="button"
+        title={title}
+        onClick={onClick}
+        fullWidth={fullWidth}
+        isHome={isHome}
+      >
         {children}
       </ButtonContainer>
     )
   }
   return (
-    <ButtonLink to={to as string} title={title}>
+    <ButtonLink
+      to={to as string}
+      title={title}
+      fullWidth={fullWidth}
+      isHome={isHome}
+    >
       {children}
     </ButtonLink>
   )

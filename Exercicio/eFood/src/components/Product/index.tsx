@@ -19,7 +19,7 @@ type Props = {
   image: string
   nota: number
   id: number
-  isHome?: boolean
+  isHome?: boolean // Valor padrão é true (Home)
 }
 
 const Product = ({
@@ -34,7 +34,12 @@ const Product = ({
   const navigate = useNavigate()
 
   const handleNavigate = () => {
-    navigate(`/prato/${id}`) // Navega para a página de detalhes do prato usando o id
+    if (isHome) {
+      navigate(`/prato/${id}`) // Navega para a página de detalhes do prato usando o id
+    } else {
+      // Lógica para adicionar ao carrinho
+      console.log('Adicionar ao carrinho:', id)
+    }
   }
 
   return (
@@ -48,7 +53,9 @@ const Product = ({
         </Infos>
       )}
       <Imagem src={image} alt={title} isHome={isHome} />
-      <Descricao>
+      <Descricao isHome={isHome}>
+        {' '}
+        {/* Passa a prop isHome */}
         <div>
           <Titulo>{title}</Titulo>
           {isHome && (
@@ -61,10 +68,12 @@ const Product = ({
         <Conteudo>{description}</Conteudo>
         <Button
           type="button"
-          title="Saiba mais"
-          onClick={handleNavigate} // Navega para a página de detalhes ao clicar no botão
+          title={isHome ? 'Saiba mais' : 'Adicionar ao carrinho'} // Altera o texto do botão
+          onClick={handleNavigate}
+          fullWidth={!isHome} // Ocupa todo o container na segunda página
+          isHome={isHome} // Passa a prop isHome
         >
-          Saiba mais
+          {isHome ? 'Saiba mais' : 'Adicionar ao carrinho'}
         </Button>
       </Descricao>
     </Card>

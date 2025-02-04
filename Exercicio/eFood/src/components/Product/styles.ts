@@ -8,7 +8,7 @@ export const Card = styled.div<{ isHome?: boolean }>`
       : cores.rosa}; // brancoSeco na Home, rosa na Página1
   overflow: hidden;
   width: 100%;
-  max-width: 472px;
+  max-width: ${({ isHome }) => (isHome ? '472px' : '100%')};
   margin-bottom: 48px;
   display: flex;
   flex-direction: column;
@@ -30,14 +30,13 @@ export const Infos = styled.div`
   top: 8px;
 `
 
-export const Descricao = styled.div`
+export const Descricao = styled.div<{ isHome?: boolean }>`
   display: flex;
   flex-direction: column;
-  border: 1px solid ${cores.rosa};
+  border: ${({ isHome }) =>
+    isHome ? `1px solid ${cores.rosa}` : 'none'}; // Borda apenas na Home
   border-top: none;
-  &:nth-child(n + 3) {
-    padding: 8px;
-  }
+  padding: 8px; // Padding aplicado em ambas as páginas
 
   div {
     display: flex;
@@ -63,10 +62,14 @@ export const Nota = styled.div`
   }
 `
 
-export const Conteudo = styled.p`
-  height: 82px;
+export const Conteudo = styled.p<{ isHome?: boolean }>`
   margin: 16px 0;
   overflow-wrap: break-word;
   text-align: left;
   font-size: 15px;
+  display: -webkit-box;
+  -webkit-line-clamp: ${({ isHome }) =>
+    isHome ? 5 : 5}; // Limita o número de linhas (4 na Home, 3 na Página1)
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 `
