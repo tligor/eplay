@@ -1,10 +1,13 @@
 import { useEffect } from 'react'
+import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Footer from '../../components/Footer'
 import Banner from '../../components/Banner'
 import { promocoes, sndPage } from '../../models/data'
 import HeaderAlternativo from '../../components/Header/HeaderAlternativo'
 import ProductsList from '../../components/ProductsList'
+import Pratos from '../../models/Pratos'
+import Modal from '../../components/Modal'
 
 const Prato1 = () => {
   const { pratoId } = useParams<string>()
@@ -12,11 +15,22 @@ const Prato1 = () => {
     (prato) => prato.id === parseInt(pratoId || '', 10)
   )
 
-  // Adiciona a classe ao body quando o componente é montado
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [selectedPrato, setSelectedPrato] = useState<Pratos | null>(null)
+
+  const openModal = (prato: Pratos) => {
+    setSelectedPrato(prato)
+    setIsModalOpen(true)
+  }
+
+  const closeModal = () => {
+    setIsModalOpen(false)
+    setSelectedPrato(null)
+  }
+
   useEffect(() => {
     document.body.classList.add('pagina-prato1')
 
-    // Remove a classe quando o componente é desmontado
     return () => {
       document.body.classList.remove('pagina-prato1')
     }
@@ -26,26 +40,34 @@ const Prato1 = () => {
     return <div>Prato não encontrado!</div>
   }
 
-  // Modifica a string infos para remover "da Semana"
   const infosModificada = prato.infos[0].replace(' da Semana', '').trim()
 
   return (
     <>
       <HeaderAlternativo />
-      {/* Passa as informações do prato para o Banner */}
       <Banner
         image={prato.image}
         title={prato.title}
         infos={[infosModificada]}
       />
-      {/* Exibe a lista de pratos da sndPage */}
       <ProductsList
-        pratos={sndPage} // Usando sndPage para exibir os pratos na segunda página
+        pratos={sndPage}
         title=""
         background="gray"
         isHome={false}
+        onOpenModal={openModal}
       />
       <Footer />
+
+      {isModalOpen && selectedPrato && (
+        <Modal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          image={selectedPrato.image}
+          title={selectedPrato.title}
+          description={selectedPrato.description}
+        />
+      )}
     </>
   )
 }

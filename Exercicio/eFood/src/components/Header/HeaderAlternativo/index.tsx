@@ -9,7 +9,9 @@ const HeaderAlternativo = () => (
       <Link to="/">
         <img src={logo} alt="eFood" />
       </Link>
-      <LinkCart>0 - produto(s)</LinkCart>
+      <LinkCart>
+        <p>0 - produto(s)</p>
+      </LinkCart>
     </div>
   </HeaderBar>
 )

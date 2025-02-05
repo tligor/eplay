@@ -20,7 +20,8 @@ type Props = {
   nota: number
   id: number
   $fullWidth?: boolean
-  $isHome?: boolean // Usando $isHome
+  $isHome?: boolean
+  onOpenModal?: () => void // Tornando a prop opcional
 }
 
 const Product = ({
@@ -28,25 +29,24 @@ const Product = ({
   image,
   infos,
   title,
-  $fullWidth = false, // Usando um valor padrão para $fullWidth
+  $fullWidth = false,
   nota,
   id,
-  $isHome = true // Usando $isHome com valor padrão
+  $isHome = true,
+  onOpenModal // Recebendo a prop
 }: Props) => {
   const navigate = useNavigate()
 
   const handleNavigate = () => {
     if ($isHome) {
-      navigate(`/prato/${id}`) // Navega para a página de detalhes do prato usando o id
+      navigate(`/prato/${id}`)
     } else {
-      // Lógica para adicionar ao carrinho
-      console.log('Adicionar ao carrinho:', id)
+      onOpenModal?.() // Chamando a função apenas se existir
     }
   }
 
   return (
     <Card $isHome={$isHome}>
-      {/* Renderiza Infos e Tags apenas se $isHome for true */}
       {$isHome && (
         <Infos>
           {infos.map((info) => (
@@ -71,10 +71,10 @@ const Product = ({
 
         <Button
           type="button"
-          title={$isHome ? 'Saiba mais' : 'Adicionar ao carrinho'} // Altera o texto do botão
+          title={$isHome ? 'Saiba mais' : 'Adicionar ao carrinho'}
           onClick={handleNavigate}
-          fullWidth={!$isHome} // Passando $fullWidth como baseado no valor de $isHome
-          isHome={$isHome} // Passando $isHome para o botão também
+          fullWidth={!$isHome}
+          isHome={$isHome}
         >
           {$isHome ? 'Saiba mais' : 'Adicionar ao carrinho'}
         </Button>

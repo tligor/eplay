@@ -6,10 +6,17 @@ export type Props = {
   title?: string
   background: 'gray' | 'black'
   pratos: Pratos[]
-  isHome?: boolean // Adicionando uma prop para controlar o estilo
+  isHome?: boolean
+  onOpenModal?: (prato: Pratos) => void // Alterado para aceitar undefined
 }
 
-const ProductsList = ({ background, pratos, title, isHome = true }: Props) => {
+const ProductsList = ({
+  background,
+  pratos,
+  title,
+  isHome = true,
+  onOpenModal
+}: Props) => {
   if (!pratos || pratos.length === 0) {
     return <div>Nenhum prato disponível.</div>
   }
@@ -28,7 +35,8 @@ const ProductsList = ({ background, pratos, title, isHome = true }: Props) => {
               infos={prato.infos}
               nota={prato.nota}
               id={prato.id}
-              $isHome={isHome} // Usando $isHome
+              $isHome={isHome}
+              onOpenModal={onOpenModal ? () => onOpenModal(prato) : undefined} // Agora é válido
             />
           ))}
         </List>

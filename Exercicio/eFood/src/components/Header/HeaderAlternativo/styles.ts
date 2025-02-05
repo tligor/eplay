@@ -70,7 +70,7 @@ export const LinkItem = styled.li`
 
 export const LinkCart = styled.a`
   display: flex;
-  color: ${cores.rosa}; // Cor do texto alterada para rosa
+  color: ${cores.rosa};
 
   img {
     margin-left: 16px;
