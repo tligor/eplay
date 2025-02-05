@@ -8,12 +8,14 @@ import {
   ModalButton,
   CloseButton
 } from './styles'
+import btnclose from '../../assets/images.nova/close.svg'
 
 type ModalProps = {
   isOpen: boolean
   onClose: () => void
   image: string
   title: string
+  preco: number
   description: string
   largeDescription: string // Nova propriedade
   Quantidade: string // Nova propriedade
@@ -25,6 +27,7 @@ const Modal = ({
   image,
   title,
   description,
+  preco,
   largeDescription,
   Quantidade
 }: ModalProps) => {
@@ -38,10 +41,12 @@ const Modal = ({
           <ModalTitle>{title}</ModalTitle>
           <ModalDescription>{largeDescription}</ModalDescription>
           <p>{Quantidade}</p> {/* Exibindo a quantidade */}
-          <ModalButton onClick={onClose}>Fechar</ModalButton>
+          <ModalButton onClick={onClose}>
+            Adicionar ao carrinho - R$ {preco.toFixed(2)}
+          </ModalButton>
         </ModalDetails>
         <CloseButton onClick={onClose}>
-          <img src="/path/to/close-icon.svg" alt="Fechar" />
+          <img src={btnclose} alt="Fechar" />
         </CloseButton>
       </ModalContent>
     </ModalOverlay>

@@ -68,6 +68,7 @@ const Prato1 = () => {
           description={selectedPrato.description}
           largeDescription={selectedPrato.largeDescription} // Passando a nova propriedade
           Quantidade={selectedPrato.quantidade} // Passando a nova propriedade
+          preco={selectedPrato.preco} // Passando a nova propriedade
         />
       )}
     </>

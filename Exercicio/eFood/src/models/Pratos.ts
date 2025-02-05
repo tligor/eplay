@@ -1,4 +1,5 @@
 class Pratos {
+  preco: number
   nota: number
   description: string
   largeDescription: string
@@ -10,6 +11,7 @@ class Pratos {
   constructor(
     id: number,
     nota: number,
+    preco: number,
     description: string,
     largeDescription: string,
     quantidade: string,
@@ -20,6 +22,7 @@ class Pratos {
     this.largeDescription = largeDescription
     this.quantidade = quantidade
     this.nota = nota
+    this.preco = preco
     this.description = description
     this.image = image
     this.infos = infos
