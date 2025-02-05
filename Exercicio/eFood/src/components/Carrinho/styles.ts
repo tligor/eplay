@@ -15,10 +15,9 @@ export const CarrinhoContainer = styled.aside<CarrinhoContainerProps>`
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
   padding: 20px;
   overflow-y: auto;
-  transition: right 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transition: right 0.3s ease-in-out;
   z-index: 99;
-  visibility: ${(props) => (props.isOpen ? 'visible' : 'hidden')};
-  opacity: ${(props) => (props.isOpen ? 1 : 0)};
+  display: ${(props) => (props.isOpen ? 'block' : 'none')};
 `
 
 export const CarrinhoHeader = styled.div`
@@ -88,4 +87,49 @@ export const CarrinhoButton = styled.button`
 export const ImgProduto = styled.img`
   width: 80px;
   height: 80px;
+`
+export const FormularioEntregaContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  h3 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    color: ${cores.cinza};
+  }
+  label {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 16.4px;
+    color: ${cores.cinza};
+  }
+`
+export const FormularioInput = styled.input`
+  width: 100%;
+  padding: 8px;
+  height: 32px;
+  border: 1px solid ${cores.cinza};
+  border-radius: 4px;
+  outline: none;
+
+  &::placeholder {
+    color: ${cores.cinza};
+  }
+`
+export const FormularioButton = styled.button`
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  background: ${cores.cinza};
+  color: ${cores.rosa};
+  border: none;
+  cursor: pointer;
+  margin-top: 8px;
+
+  &:hover {
+    opacity: 0.9;
+  }
 `
