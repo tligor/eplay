@@ -6,20 +6,17 @@ type BannerProps = {
   infos: string[] // infos continua sendo um array de strings
 }
 
-const Banner = ({ image, title, infos }: BannerProps) => {
-  // Remove "da Semana" do primeiro elemento do array infos
-  const infosModificada = infos[0].replace('da Semana', '').trim()
-
-  return (
-    <Container className="container">
-      <Imagem style={{ backgroundImage: `url(${image})` }}></Imagem>
-      <Title>{title}</Title>
-      <Categoria>
-        {/* Renderiza a string modificada */}
-        <span>{infosModificada}</span>
-      </Categoria>
-    </Container>
-  )
-}
+const Banner = ({ image, title, infos }: BannerProps) => (
+  <Container className="container">
+    <Imagem image={image} />
+    <Title>{title}</Title>
+    <Categoria>
+      {/* Renderiza todas as infos passadas */}
+      {infos.map((info, index) => (
+        <span key={index}>{info}</span>
+      ))}
+    </Categoria>
+  </Container>
+)
 
 export default Banner

@@ -3,18 +3,16 @@ import styled from 'styled-components'
 export const Container = styled.div`
   position: relative;
 `
-export const Imagem = styled.div`
+
+export const Imagem = styled.div<{ image: string }>`
   width: 100%;
   height: 280px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  font-weight: bold;
+  background-image: ${({ image }) => `url('${image}')`};
 `
-export const Precos = styled.p`
-  font-size: 24px;
-  margin-top: 24px;
-`
+
 export const Title = styled.h3`
   color: white;
   position: absolute;
@@ -24,6 +22,7 @@ export const Title = styled.h3`
   font-weight: 900;
   line-height: 37.5px;
 `
+
 export const Categoria = styled.h3`
   color: white;
   position: absolute;

@@ -19,7 +19,8 @@ type Props = {
   image: string
   nota: number
   id: number
-  isHome?: boolean // Valor padrão é true (Home)
+  $fullWidth?: boolean
+  $isHome?: boolean // Usando $isHome
 }
 
 const Product = ({
@@ -27,14 +28,15 @@ const Product = ({
   image,
   infos,
   title,
+  $fullWidth = false, // Usando um valor padrão para $fullWidth
   nota,
   id,
-  isHome = true // Valor padrão é true (Home)
+  $isHome = true // Usando $isHome com valor padrão
 }: Props) => {
   const navigate = useNavigate()
 
   const handleNavigate = () => {
-    if (isHome) {
+    if ($isHome) {
       navigate(`/prato/${id}`) // Navega para a página de detalhes do prato usando o id
     } else {
       // Lógica para adicionar ao carrinho
@@ -43,22 +45,22 @@ const Product = ({
   }
 
   return (
-    <Card isHome={isHome}>
-      {/* Renderiza Infos e Tags apenas se isHome for true */}
-      {isHome && (
+    <Card $isHome={$isHome}>
+      {/* Renderiza Infos e Tags apenas se $isHome for true */}
+      {$isHome && (
         <Infos>
           {infos.map((info) => (
             <Tag key={info}>{info}</Tag>
           ))}
         </Infos>
       )}
-      <Imagem src={image} alt={title} isHome={isHome} />
-      <Descricao isHome={isHome}>
-        {' '}
-        {/* Passa a prop isHome */}
+
+      <Imagem src={image} alt={title} $isHome={$isHome} />
+
+      <Descricao>
         <div>
           <Titulo>{title}</Titulo>
-          {isHome && (
+          {$isHome && (
             <Nota>
               {nota}
               <img src={star} alt="Rating" />
@@ -66,14 +68,15 @@ const Product = ({
           )}
         </div>
         <Conteudo>{description}</Conteudo>
+
         <Button
           type="button"
-          title={isHome ? 'Saiba mais' : 'Adicionar ao carrinho'} // Altera o texto do botão
+          title={$isHome ? 'Saiba mais' : 'Adicionar ao carrinho'} // Altera o texto do botão
           onClick={handleNavigate}
-          fullWidth={!isHome} // Ocupa todo o container na segunda página
-          isHome={isHome} // Passa a prop isHome
+          fullWidth={!$isHome} // Passando $fullWidth como baseado no valor de $isHome
+          isHome={$isHome} // Passando $isHome para o botão também
         >
-          {isHome ? 'Saiba mais' : 'Adicionar ao carrinho'}
+          {$isHome ? 'Saiba mais' : 'Adicionar ao carrinho'}
         </Button>
       </Descricao>
     </Card>

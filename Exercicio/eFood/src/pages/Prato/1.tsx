@@ -32,12 +32,13 @@ const Prato1 = () => {
   return (
     <>
       <HeaderAlternativo />
-      {/* Passa a string modificada para o Banner */}
+      {/* Passa as informações do prato para o Banner */}
       <Banner
         image={prato.image}
         title={prato.title}
         infos={[infosModificada]}
       />
+      {/* Exibe a lista de pratos da sndPage */}
       <ProductsList
         pratos={sndPage} // Usando sndPage para exibir os pratos na segunda página
         title=""

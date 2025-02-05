@@ -25,8 +25,8 @@ const Button = ({
         type="button"
         title={title}
         onClick={onClick}
-        fullWidth={fullWidth}
-        isHome={isHome}
+        $fullWidth={fullWidth}
+        $isHome={isHome}
       >
         {children}
       </ButtonContainer>
@@ -36,8 +36,8 @@ const Button = ({
     <ButtonLink
       to={to as string}
       title={title}
-      fullWidth={fullWidth}
-      isHome={isHome}
+      $fullWidth={fullWidth}
+      $isHome={isHome}
     >
       {children}
     </ButtonLink>

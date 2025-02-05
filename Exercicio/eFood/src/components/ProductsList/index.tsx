@@ -1,5 +1,3 @@
-// components/ProductsList.tsx
-
 import Pratos from '../../models/Pratos'
 import Product from '../Product'
 import { Container, List } from './styles'
@@ -17,10 +15,10 @@ const ProductsList = ({ background, pratos, title, isHome = true }: Props) => {
   }
 
   return (
-    <Container background={background} isHome={isHome}>
+    <Container $background={background} $isHome={isHome}>
       <div className="container">
         {title && <h2>{title}</h2>}
-        <List isHome={isHome}>
+        <List $isHome={isHome}>
           {pratos.map((prato) => (
             <Product
               key={prato.id}
@@ -30,7 +28,7 @@ const ProductsList = ({ background, pratos, title, isHome = true }: Props) => {
               infos={prato.infos}
               nota={prato.nota}
               id={prato.id}
-              isHome={isHome}
+              $isHome={isHome} // Usando $isHome
             />
           ))}
         </List>
