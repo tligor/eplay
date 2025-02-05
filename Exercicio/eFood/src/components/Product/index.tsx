@@ -18,7 +18,7 @@ type Props = {
   infos: string[]
   image: string
   nota: number
-  id: number
+  id: string
   $fullWidth?: boolean
   $isHome?: boolean
   onOpenModal?: () => void // Tornando a prop opcional
@@ -29,7 +29,6 @@ const Product = ({
   image,
   infos,
   title,
-  $fullWidth = false,
   nota,
   id,
   $isHome = true,

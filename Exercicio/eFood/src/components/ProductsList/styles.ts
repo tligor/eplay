@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { Props } from '.'
 import { cores } from '../../styles'
 
 export const Container = styled.section<{

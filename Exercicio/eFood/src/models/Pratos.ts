@@ -7,10 +7,10 @@ class Pratos {
   image: string
   infos: string[]
   title: string
-  id: number
+  id: string
 
   constructor(
-    id: number,
+    id: string,
     nota: number,
     preco: number,
     description: string,

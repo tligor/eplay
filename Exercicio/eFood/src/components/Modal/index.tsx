@@ -21,7 +21,7 @@ type ModalProps = {
   description: string
   largeDescription: string
   Quantidade: string
-  id: number
+  id: string
   nota: number
   infosts: string
   onOpenCarrinho: () => void // Função para abrir o carrinho

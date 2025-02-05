@@ -10,10 +10,8 @@ import Modal from '../../components/Modal'
 import Carrinho from '../../components/Carrinho' // Certifique-se de ter esse componente de carrinho
 
 const Prato1 = () => {
-  const { pratoId } = useParams<string>()
-  const prato = promocoes.find(
-    (prato) => prato.id === parseInt(pratoId || '', 10)
-  )
+  const { pratoId } = useParams<string>() // pratoId é uma string
+  const prato = promocoes.find((prato) => prato.id === pratoId) // Comparação direta de strings
 
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [selectedPrato, setSelectedPrato] = useState<Pratos | null>(null)

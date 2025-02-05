@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { v4 as uuidv4 } from 'uuid' // Importe o UUID
 import { HeaderBar } from './styles'
 import logo from '../../../assets/images.nova/logo.svg'
 import { LinkCart } from '../styles'
@@ -23,11 +24,6 @@ const HeaderAlternativo = () => {
   // Função para alternar o carrinho
   const toggleCarrinho = () => {
     return
-  }
-
-  // Função para abrir o modal
-  const openModal = () => {
-    setIsModalOpen(true)
   }
 
   // Função para fechar o modal
@@ -65,7 +61,7 @@ const HeaderAlternativo = () => {
         description="Descrição do prato"
         largeDescription="Descrição detalhada do prato"
         Quantidade="1"
-        id={1}
+        id={uuidv4()}
         nota={5}
         infosts="Informações adicionais"
       />

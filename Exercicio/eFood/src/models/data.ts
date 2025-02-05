@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid'
 import hiokisushi from '../assets/pratos/Hioki Sushi/hiokisushi.png'
 import ladocevita from '../assets/pratos/La Dolce Vita Trattoria/image 1.png'
 import pizza from '../assets/pratos/2ndPage/pizzamarguerita.png' // Importando a imagem da pizza
@@ -6,7 +7,7 @@ import Pratos from '../models/Pratos' // Certificando-se de que o tipo Pratos es
 // Definindo o tipo 'Pratos' para garantir que os dados sigam o formato esperado
 export const promocoes: Pratos[] = [
   {
-    id: 1,
+    id: uuidv4(),
     title: 'Hioki Sushi',
     nota: 10,
     description:
@@ -18,7 +19,7 @@ export const promocoes: Pratos[] = [
     infos: ['Destaque da Semana', 'Japonesa']
   },
   {
-    id: 2,
+    id: uuidv4(),
     title: 'La Dolce Vita Trattoria',
     nota: 10,
     description:
@@ -30,7 +31,7 @@ export const promocoes: Pratos[] = [
     infos: ['Italiana']
   },
   {
-    id: 3,
+    id: uuidv4(),
     title: 'La Dolce Vita Trattoria',
     nota: 10,
     description:
@@ -42,7 +43,7 @@ export const promocoes: Pratos[] = [
     infos: ['Italiana']
   },
   {
-    id: 4,
+    id: uuidv4(),
     title: 'La Dolce Vita Trattoria',
     nota: 10,
     description:
@@ -54,7 +55,7 @@ export const promocoes: Pratos[] = [
     infos: ['Italiana']
   },
   {
-    id: 5,
+    id: uuidv4(),
     title: 'La Dolce Vita Trattoria',
     nota: 10,
     description:
@@ -66,7 +67,7 @@ export const promocoes: Pratos[] = [
     infos: ['Italiana']
   },
   {
-    id: 6,
+    id: uuidv4(),
     title: 'La Dolce Vita Trattoria',
     nota: 10,
     description:
@@ -82,7 +83,7 @@ export const promocoes: Pratos[] = [
 // Definindo o tipo 'PratosNovos' com a mesma estrutura de 'Pratos'
 export const sndPage: Pratos[] = [
   {
-    id: 1,
+    id: uuidv4(),
     title: 'Pizza Marguerita',
     nota: 10,
     description:
@@ -95,7 +96,7 @@ export const sndPage: Pratos[] = [
     infos: ['Destaque da Semana', 'Italiana']
   },
   {
-    id: 2,
+    id: uuidv4(),
     title: 'Pizza Marguerita',
     nota: 10,
     description:
@@ -108,7 +109,7 @@ export const sndPage: Pratos[] = [
     infos: ['Destaque da Semana', 'Italiana']
   },
   {
-    id: 3,
+    id: uuidv4(),
     title: 'Pizza Marguerita',
     nota: 10,
     description:
@@ -121,7 +122,7 @@ export const sndPage: Pratos[] = [
     infos: ['Destaque da Semana', 'Italiana']
   },
   {
-    id: 4,
+    id: uuidv4(),
     title: 'Pizza Marguerita',
     nota: 10,
     description:
@@ -134,7 +135,7 @@ export const sndPage: Pratos[] = [
     infos: ['Destaque da Semana', 'Italiana']
   },
   {
-    id: 5,
+    id: uuidv4(),
     title: 'Pizza Marguerita',
     nota: 10,
     description:
@@ -147,7 +148,7 @@ export const sndPage: Pratos[] = [
     infos: ['Destaque da Semana', 'Italiana']
   },
   {
-    id: 6,
+    id: uuidv4(),
     title: 'Pizza Marguerita',
     nota: 10,
     description:

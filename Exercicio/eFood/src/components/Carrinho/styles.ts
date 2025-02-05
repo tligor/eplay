@@ -133,3 +133,27 @@ export const FormularioButton = styled.button`
     opacity: 0.9;
   }
 `
+export const PedidoRealizadoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: ${cores.cinza};
+
+  h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+
+  p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+`
+
+export const MensagemCarrinhoVazio = styled.p`
+  color: ${cores.rosa};
+  background-color: ${cores.cinza};
+  text-align: center;
+  font-weight: bold;
+`
