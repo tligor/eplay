@@ -9,8 +9,9 @@ type ButtonProps = {
 
 export const ButtonContainer = styled.button<ButtonProps>`
   border: 2px solid ${cores.rosa};
-  color: ${cores.cinza};
-  background-color: ${cores.rosa};
+  color: ${({ $isHome }) => ($isHome ? `${cores.cinza}` : `${cores.rosa}`)};
+  background-color: ${({ $isHome }) =>
+    $isHome ? `${cores.rosa}` : `${cores.cinza}`};
   font-size: 14px;
   font-weight: 700;
   line-height: 16px;
