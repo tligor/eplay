@@ -62,10 +62,12 @@ const Prato1 = () => {
       {isModalOpen && selectedPrato && (
         <Modal
           isOpen={isModalOpen}
-          onClose={closeModal}
+          onClose={() => setIsModalOpen(false)}
           image={selectedPrato.image}
           title={selectedPrato.title}
           description={selectedPrato.description}
+          largeDescription={selectedPrato.largeDescription} // Passando a nova propriedade
+          Quantidade={selectedPrato.quantidade} // Passando a nova propriedade
         />
       )}
     </>

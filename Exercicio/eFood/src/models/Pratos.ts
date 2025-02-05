@@ -1,6 +1,8 @@
 class Pratos {
   nota: number
   description: string
+  largeDescription: string
+  quantidade: string
   image: string
   infos: string[]
   title: string
@@ -9,10 +11,14 @@ class Pratos {
     id: number,
     nota: number,
     description: string,
+    largeDescription: string,
+    quantidade: string,
     image: string,
     infos: string[],
     title: string
   ) {
+    this.largeDescription = largeDescription
+    this.quantidade = quantidade
     this.nota = nota
     this.description = description
     this.image = image

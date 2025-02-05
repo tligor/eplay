@@ -15,9 +15,19 @@ type ModalProps = {
   image: string
   title: string
   description: string
+  largeDescription: string // Nova propriedade
+  Quantidade: string // Nova propriedade
 }
 
-const Modal = ({ isOpen, onClose, image, title, description }: ModalProps) => {
+const Modal = ({
+  isOpen,
+  onClose,
+  image,
+  title,
+  description,
+  largeDescription,
+  Quantidade
+}: ModalProps) => {
   if (!isOpen) return null // Não renderiza o modal se não estiver aberto
 
   return (
@@ -26,7 +36,8 @@ const Modal = ({ isOpen, onClose, image, title, description }: ModalProps) => {
         <ModalImage src={image} alt={title} />
         <ModalDetails>
           <ModalTitle>{title}</ModalTitle>
-          <ModalDescription>{description}</ModalDescription>
+          <ModalDescription>{largeDescription}</ModalDescription>
+          <p>{Quantidade}</p> {/* Exibindo a quantidade */}
           <ModalButton onClick={onClose}>Fechar</ModalButton>
         </ModalDetails>
         <CloseButton onClick={onClose}>
