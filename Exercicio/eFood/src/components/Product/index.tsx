@@ -57,7 +57,7 @@ const Product = ({
 
       <Imagem src={image} alt={title} $isHome={$isHome} />
 
-      <Descricao>
+      <Descricao $isHome={$isHome}>
         <div>
           <Titulo>{title}</Titulo>
           {$isHome && (

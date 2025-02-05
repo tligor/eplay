@@ -15,9 +15,9 @@ export const Card = styled.div<{ $isHome?: boolean }>`
 
 export const Imagem = styled.img<{ $isHome?: boolean }>`
   width: 100%;
-  height: ${(props) => (props.$isHome ? '200px' : '167px')};
+  height: ${(props) => (props.$isHome ? '200px' : '167px')}; // Usando $isHome
   object-fit: cover;
-  padding: ${(props) => (props.$isHome ? '0px' : '8px')};
+  padding: ${(props) => (props.$isHome ? '0px' : '8px')}; // Usando $isHome
 `
 
 export const Infos = styled.div`

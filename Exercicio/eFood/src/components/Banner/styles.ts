@@ -26,9 +26,9 @@ export const Title = styled.h3`
 export const Categoria = styled.h3`
   color: white;
   position: absolute;
-  top: 0px;
+  top: 25px;
   left: 170px;
   font-size: 32px;
-  font-weight: 900;
+  font-weight: 100;
   line-height: 37.5px;
 `
