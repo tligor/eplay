@@ -8,6 +8,7 @@ class Pratos {
   infos: string[]
   title: string
   id: number
+
   constructor(
     id: number,
     nota: number,
@@ -19,14 +20,15 @@ class Pratos {
     infos: string[],
     title: string
   ) {
-    this.largeDescription = largeDescription
-    this.quantidade = quantidade
+    this.id = id
     this.nota = nota
     this.preco = preco
     this.description = description
+    this.largeDescription = largeDescription
+    this.quantidade = quantidade
     this.image = image
     this.infos = infos
-    ;(this.title = title), (this.id = id)
+    this.title = title
   }
 }
 

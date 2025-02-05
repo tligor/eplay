@@ -1,3 +1,5 @@
+import { useDispatch } from 'react-redux'
+import { adicionarAoCarrinho } from '../../store/Slice/carrinhoSlice'
 import {
   ModalOverlay,
   ModalContent,
@@ -17,8 +19,12 @@ type ModalProps = {
   title: string
   preco: number
   description: string
-  largeDescription: string // Nova propriedade
-  Quantidade: string // Nova propriedade
+  largeDescription: string
+  Quantidade: string
+  id: number
+  nota: number
+  infosts: string
+  onOpenCarrinho: () => void // Função para abrir o carrinho
 }
 
 const Modal = ({
@@ -29,9 +35,40 @@ const Modal = ({
   description,
   preco,
   largeDescription,
-  Quantidade
+  Quantidade,
+  id,
+  nota,
+  infosts,
+  onOpenCarrinho
 }: ModalProps) => {
-  if (!isOpen) return null // Não renderiza o modal se não estiver aberto
+  // Garantir que useDispatch é chamado no topo do componente
+  const dispatch = useDispatch()
+
+  // Não renderizar o modal se não estiver aberto
+  if (!isOpen) return null
+
+  // Função que será chamada quando o botão de adicionar for clicado
+  const handleAdicionarAoCarrinho = () => {
+    const prato = {
+      id,
+      title,
+      preco,
+      image,
+      description,
+      largeDescription,
+      quantidade: Quantidade,
+      nota,
+      infosts,
+      infos: [infosts] // Certificando-se de que infos seja um array
+    }
+
+    // Despachando a ação para adicionar o item ao carrinho
+    dispatch(adicionarAoCarrinho(prato))
+
+    // Abrindo o carrinho e fechando o modal
+    onOpenCarrinho()
+    onClose()
+  }
 
   return (
     <ModalOverlay>
@@ -40,8 +77,8 @@ const Modal = ({
         <ModalDetails>
           <ModalTitle>{title}</ModalTitle>
           <ModalDescription>{largeDescription}</ModalDescription>
-          <p>{Quantidade}</p> {/* Exibindo a quantidade */}
-          <ModalButton onClick={onClose}>
+          <p>{Quantidade}</p>
+          <ModalButton onClick={handleAdicionarAoCarrinho}>
             Adicionar ao carrinho - R$ {preco.toFixed(2)}
           </ModalButton>
         </ModalDetails>
