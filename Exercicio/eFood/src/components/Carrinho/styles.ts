@@ -11,19 +11,14 @@ export const CarrinhoContainer = styled.aside<CarrinhoContainerProps>`
   background: ${cores.rosa};
   position: fixed;
   top: 0;
-  right: ${(props) =>
-    props.isOpen ? '0' : '-360px'}; /* Ajusta a posição do carrinho */
+  right: ${(props) => (props.isOpen ? '0' : '-360px')};
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
   padding: 20px;
   overflow-y: auto;
-  transition: right 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Animação suave para a posição e a opacidade */
+  transition: right 0.3s ease-in-out, opacity 0.3s ease-in-out;
   z-index: 99;
-  visibility: ${(props) =>
-    props.isOpen
-      ? 'visible'
-      : 'hidden'}; /* Garante que o carrinho não seja clicável quando fechado */
-  opacity: ${(props) =>
-    props.isOpen ? 1 : 0}; /* Transição suave da opacidade */
+  visibility: ${(props) => (props.isOpen ? 'visible' : 'hidden')};
+  opacity: ${(props) => (props.isOpen ? 1 : 0)};
 `
 
 export const CarrinhoHeader = styled.div`
@@ -40,7 +35,6 @@ export const CarrinhoLista = styled.ul`
 
 export const CarrinhoItem = styled.li`
   display: flex;
-  align-items: center;
   margin-bottom: 15px;
   width: 100%;
   height: 100px;
@@ -52,11 +46,13 @@ export const CarrinhoItem = styled.li`
   position: relative;
 
   div {
-    flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    margin-left: 8px;
+
+    h4 {
+      margin-bottom: 16px;
+    }
   }
 
   button {
@@ -71,15 +67,20 @@ export const CarrinhoItem = styled.li`
 `
 
 export const CarrinhoTotal = styled.div`
+  display: flex;
+  justify-content: space-between;
   margin-top: 20px;
   font-weight: bold;
 `
 
 export const CarrinhoButton = styled.button`
   width: 100%;
+  text-align: center;
   padding: 10px;
-  background: #32cd32;
-  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  background: ${cores.cinza};
+  color: ${cores.rosa};
   border: none;
   cursor: pointer;
   margin-top: 20px;

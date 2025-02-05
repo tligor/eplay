@@ -5,7 +5,7 @@ import { HeaderBar } from './styles'
 import logo from '../../../assets/images.nova/logo.svg'
 import { LinkCart } from '../styles'
 import { RootState } from '../../../store/store'
-import { CarrinhoContainer } from '../../Carrinho/styles'
+import Carrinho from '../../Carrinho' // Importando o componente Carrinho
 import Modal from '../../Modal' // Importando o Modal
 
 const HeaderAlternativo = () => {
@@ -22,7 +22,7 @@ const HeaderAlternativo = () => {
 
   // Função para alternar o carrinho
   const toggleCarrinho = () => {
-    setIsCarrinhoOpen(!isCarrinhoOpen)
+    return
   }
 
   // Função para abrir o modal
@@ -48,12 +48,10 @@ const HeaderAlternativo = () => {
       </div>
 
       {/* Exibindo o carrinho */}
-      {isCarrinhoOpen && (
-        <CarrinhoContainer isOpen={isCarrinhoOpen}>
-          <h3>Carrinho</h3>
-          {/* Aqui você pode adicionar os itens do carrinho e outros componentes */}
-        </CarrinhoContainer>
-      )}
+      <Carrinho
+        isOpen={isCarrinhoOpen}
+        onClose={() => setIsCarrinhoOpen(false)}
+      />
 
       {/* Modal com o onOpenCarrinho para abrir o carrinho ao adicionar ao carrinho */}
       <Modal

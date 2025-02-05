@@ -91,7 +91,9 @@ const Prato1 = () => {
       )}
 
       {/* Carrinho */}
-      {isCarrinhoOpen && <Carrinho />}
+      {isCarrinhoOpen && (
+        <Carrinho isOpen={isCarrinhoOpen} onClose={closeCarrinho} />
+      )}
     </>
   )
 }
