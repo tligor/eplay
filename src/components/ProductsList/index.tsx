@@ -1,4 +1,3 @@
-import { info } from 'console'
 import Game from '../../models/Game'
 import Product from '../Product'
 import { Container, List } from './styles'
