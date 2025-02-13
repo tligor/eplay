@@ -2,12 +2,13 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Footer from '../../components/Footer'
 import Banner from '../../components/Banner'
-import { promocoes, sndPage } from '../../models/data'
+import { promocoes } from '../../models/data' // sndPage não é mais importada aqui
 import HeaderAlternativo from '../../components/Header/HeaderAlternativo'
 import ProductsList from '../../components/ProductsList'
 import Pratos from '../../models/Pratos'
 import Modal from '../../components/Modal'
-import Carrinho from '../../components/Carrinho' // Certifique-se de ter esse componente de carrinho
+import Carrinho from '../../components/Carrinho'
+import { fetchSndPageData } from '../../models/api' // Importe o serviço da API
 
 const Prato1 = () => {
   const { pratoId } = useParams<string>() // pratoId é uma string
@@ -15,7 +16,26 @@ const Prato1 = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [selectedPrato, setSelectedPrato] = useState<Pratos | null>(null)
-  const [isCarrinhoOpen, setIsCarrinhoOpen] = useState(false) // Estado para controlar a exibição do carrinho
+  const [isCarrinhoOpen, setIsCarrinhoOpen] = useState(false)
+  const [sndPageData, setSndPageData] = useState<Pratos[]>([]) // Estado para os dados da API
+  const [loading, setLoading] = useState<boolean>(true) // Estado para carregamento
+  const [error, setError] = useState<string | null>(null) // Estado para erros
+
+  // Buscar os dados da API ao montar o componente
+  useEffect(() => {
+    const getSndPageData = async () => {
+      try {
+        const data = await fetchSndPageData()
+        setSndPageData(data)
+      } catch (err) {
+        setError('Erro ao carregar dados da sndPage')
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    getSndPageData()
+  }, [])
 
   // Função para abrir o modal
   const openModal = (prato: Pratos) => {
@@ -53,6 +73,10 @@ const Prato1 = () => {
 
   const infosModificada = prato.infos[0].replace(' da Semana', '').trim()
 
+  // Exibir mensagem de carregamento ou erro
+  if (loading) return <div>Carregando...</div>
+  if (error) return <div>{error}</div>
+
   return (
     <>
       <HeaderAlternativo />
@@ -62,11 +86,11 @@ const Prato1 = () => {
         infos={[infosModificada]}
       />
       <ProductsList
-        pratos={sndPage}
+        pratos={sndPageData} // Usando os dados da API
         title=""
         background="gray"
         isHome={false}
-        onOpenModal={openModal} // Passando a função para abrir o modal
+        onOpenModal={openModal}
       />
       <Footer />
 
@@ -75,7 +99,7 @@ const Prato1 = () => {
         <Modal
           isOpen={isModalOpen}
           onClose={closeModal}
-          onOpenCarrinho={openCarrinho} // Passando a função para abrir o carrinho
+          onOpenCarrinho={openCarrinho}
           image={selectedPrato.image}
           title={selectedPrato.title}
           description={selectedPrato.description}
