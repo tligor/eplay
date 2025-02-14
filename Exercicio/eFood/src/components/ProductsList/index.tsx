@@ -7,7 +7,8 @@ export type Props = {
   background: 'gray' | 'black'
   pratos: Pratos[]
   isHome?: boolean
-  onOpenModal?: (prato: Pratos) => void // Alterado para aceitar undefined
+  onOpenModal?: (prato: Pratos) => void
+  truncateDescription?: boolean // Nova propriedade para controlar o truncamento
 }
 
 const ProductsList = ({
@@ -15,7 +16,8 @@ const ProductsList = ({
   pratos,
   title,
   isHome = true,
-  onOpenModal
+  onOpenModal,
+  truncateDescription = false // Valor padrão é false
 }: Props) => {
   if (!pratos || pratos.length === 0) {
     return <div>Nenhum prato disponível.</div>
@@ -26,19 +28,28 @@ const ProductsList = ({
       <div className="container">
         {title && <h2>{title}</h2>}
         <List $isHome={isHome}>
-          {pratos.map((prato) => (
-            <Product
-              key={prato.id}
-              title={prato.title}
-              description={prato.description}
-              image={prato.image}
-              infos={prato.infos}
-              nota={prato.nota}
-              id={prato.id}
-              $isHome={isHome}
-              onOpenModal={onOpenModal ? () => onOpenModal(prato) : undefined} // Agora é válido
-            />
-          ))}
+          {pratos.map((prato) => {
+            // Aplica o truncamento somente se truncateDescription for true
+            const description = truncateDescription
+              ? prato.description.length > 100
+                ? `${prato.description.slice(0, 100)} (...)`
+                : prato.description
+              : prato.description
+
+            return (
+              <Product
+                key={prato.id}
+                title={prato.title}
+                description={description}
+                image={prato.image}
+                infos={prato.infos}
+                nota={prato.nota}
+                id={prato.id}
+                $isHome={isHome}
+                onOpenModal={onOpenModal ? () => onOpenModal(prato) : undefined}
+              />
+            )
+          })}
         </List>
       </div>
     </Container>

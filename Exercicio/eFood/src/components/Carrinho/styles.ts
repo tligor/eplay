@@ -14,10 +14,10 @@ export const CarrinhoContainer = styled.aside<CarrinhoContainerProps>`
   right: ${(props) => (props.isOpen ? '0' : '-360px')};
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  overflow-y: auto;
   transition: right 0.3s ease-in-out;
   z-index: 99;
-  display: ${(props) => (props.isOpen ? 'block' : 'none')};
+  display: ${(props) => (props.isOpen ? 'flex' : 'none')};
+  flex-direction: column; // Organiza o conteúdo em coluna
 `
 
 export const CarrinhoHeader = styled.div`
@@ -30,6 +30,8 @@ export const CarrinhoHeader = styled.div`
 export const CarrinhoLista = styled.ul`
   list-style: none;
   padding: 0;
+  flex: 1; // Ocupa o espaço restante
+  overflow-y: hidden; // Remove a barra de rolagem interna
 `
 
 export const CarrinhoItem = styled.li`
@@ -84,14 +86,18 @@ export const CarrinhoButton = styled.button`
   cursor: pointer;
   margin-top: 20px;
 `
+
 export const ImgProduto = styled.img`
   width: 80px;
   height: 80px;
 `
+
 export const FormularioEntregaContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  flex: 1; // Ocupa o espaço restante
+  overflow-y: hidden; // Remove a barra de rolagem interna
 
   h3 {
     font-size: 24px;
@@ -99,13 +105,19 @@ export const FormularioEntregaContainer = styled.div`
     margin-bottom: 16px;
     color: ${cores.cinza};
   }
+
   label {
     font-size: 16px;
     font-weight: 700;
     line-height: 16.4px;
     color: ${cores.cinza};
   }
+
+  span {
+    text-align: center;
+  }
 `
+
 export const FormularioInput = styled.input`
   width: 100%;
   padding: 8px;
@@ -118,6 +130,7 @@ export const FormularioInput = styled.input`
     color: ${cores.cinza};
   }
 `
+
 export const FormularioButton = styled.button`
   width: 100%;
   padding: 10px;
@@ -133,11 +146,14 @@ export const FormularioButton = styled.button`
     opacity: 0.9;
   }
 `
+
 export const PedidoRealizadoContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
   color: ${cores.cinza};
+  flex: 1; // Ocupa o espaço restante
+  overflow-y: hidden; // Remove a barra de rolagem interna
 
   h1 {
     font-size: 24px;
@@ -156,4 +172,12 @@ export const MensagemCarrinhoVazio = styled.p`
   background-color: ${cores.cinza};
   text-align: center;
   font-weight: bold;
+  flex: 1; // Centraliza a mensagem no espaço disponível
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+export const CepNumero = styled.div`
+  display: flex;
+  gap: 34px;
 `

@@ -6,7 +6,13 @@ import { promocoes } from '../../models/data' // Importando os dados de promoÃ§Ã
 const Home = () => (
   <>
     <Header />
-    <ProductsList pratos={promocoes} title="" background="gray" isHome={true} />
+    <ProductsList
+      pratos={promocoes}
+      title=""
+      background="gray"
+      isHome={true}
+      truncateDescription={false}
+    />
     <Footer />
   </>
 )

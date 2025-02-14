@@ -19,7 +19,6 @@ type ModalProps = {
   title: string
   preco: number
   description: string
-  largeDescription: string
   Quantidade: string
   id: string
   nota: number
@@ -34,7 +33,6 @@ const Modal = ({
   title,
   description,
   preco,
-  largeDescription,
   Quantidade,
   id,
   nota,
@@ -55,7 +53,6 @@ const Modal = ({
       preco,
       image,
       description,
-      largeDescription,
       quantidade: Quantidade,
       nota,
       infosts,
@@ -76,7 +73,7 @@ const Modal = ({
         <ModalImage src={image} alt={title} />
         <ModalDetails>
           <ModalTitle>{title}</ModalTitle>
-          <ModalDescription>{largeDescription}</ModalDescription>
+          <ModalDescription>{description}</ModalDescription>
           <p>{Quantidade}</p>
           <ModalButton onClick={handleAdicionarAoCarrinho}>
             Adicionar ao carrinho - R$ {preco.toFixed(2)}

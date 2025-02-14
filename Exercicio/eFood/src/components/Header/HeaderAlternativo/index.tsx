@@ -59,7 +59,6 @@ const HeaderAlternativo = () => {
         title="Prato delicioso"
         preco={50}
         description="Descrição do prato"
-        largeDescription="Descrição detalhada do prato"
         Quantidade="1"
         id={uuidv4()}
         nota={5}

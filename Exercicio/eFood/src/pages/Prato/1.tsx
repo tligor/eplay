@@ -91,6 +91,7 @@ const Prato1 = () => {
         background="gray"
         isHome={false}
         onOpenModal={openModal}
+        truncateDescription={true}
       />
       <Footer />
 
@@ -103,7 +104,6 @@ const Prato1 = () => {
           image={selectedPrato.image}
           title={selectedPrato.title}
           description={selectedPrato.description}
-          largeDescription={selectedPrato.largeDescription}
           Quantidade={selectedPrato.quantidade}
           preco={selectedPrato.preco}
           id={selectedPrato.id}

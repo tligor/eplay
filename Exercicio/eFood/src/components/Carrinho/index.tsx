@@ -17,7 +17,8 @@ import {
   FormularioInput,
   FormularioButton,
   PedidoRealizadoContainer,
-  MensagemCarrinhoVazio
+  MensagemCarrinhoVazio,
+  CepNumero
 } from './styles'
 
 interface CarrinhoProps {
@@ -89,12 +90,47 @@ const Carrinho = ({ isOpen, onClose }: CarrinhoProps) => {
   // Máscara para telefone
   const handleTelefoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target
-    const formattedValue = value
-      .replace(/\D/g, '')
-      .replace(/^(\d{2})(\d)/g, '($1) $2')
-      .replace(/(\d{5})(\d)/, '$1-$2')
-      .slice(0, 15)
+
+    // Remove todos os caracteres não numéricos
+    const numericValue = value.replace(/\D/g, '')
+
+    // Aplica a máscara (00) 00000-0000
+    let formattedValue = numericValue
+    if (numericValue.length > 2) {
+      formattedValue = `(${numericValue.slice(0, 2)}) ${numericValue.slice(
+        2,
+        7
+      )}`
+      if (numericValue.length > 7) {
+        formattedValue += `-${numericValue.slice(7, 11)}`
+      }
+    }
+
+    // Limita o comprimento máximo do telefone (11 dígitos + caracteres de formatação)
+    formattedValue = formattedValue.slice(0, 15) // (00) 00000-0000 tem 15 caracteres
+
+    // Atualiza o estado do telefone
     setDeliveryData({ ...deliveryData, telefone: formattedValue })
+  }
+
+  // Máscara para CEP
+  const handleCepChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target
+
+    // Remove todos os caracteres não numéricos
+    const numericValue = value.replace(/\D/g, '')
+
+    // Aplica a máscara 00000-000
+    let formattedValue = numericValue
+    if (numericValue.length > 5) {
+      formattedValue = `${numericValue.slice(0, 5)}-${numericValue.slice(5, 8)}`
+    }
+
+    // Limita o comprimento máximo do CEP (8 dígitos + 1 hífen)
+    formattedValue = formattedValue.slice(0, 9) // 00000-000 tem 9 caracteres
+
+    // Atualiza o estado do CEP
+    setDeliveryData({ ...deliveryData, cep: formattedValue })
   }
 
   // Validação dos campos de entrega
@@ -180,7 +216,7 @@ const Carrinho = ({ isOpen, onClose }: CarrinhoProps) => {
       ) : !showPaymentForm ? (
         <FormularioEntregaContainer>
           <h3>Entrega</h3>
-          <label htmlFor="nome">Quem irá receber</label>
+          <label htmlFor="nome">Quem irá receber *</label>
           <FormularioInput
             id="nome"
             type="text"
@@ -190,8 +226,7 @@ const Carrinho = ({ isOpen, onClose }: CarrinhoProps) => {
             }
             required
           />
-          {errors.nome && <span>Campo obrigatório</span>}
-          <label htmlFor="endereco">Endereço</label>
+          <label htmlFor="endereco">Endereço *</label>
           <FormularioInput
             id="endereco"
             type="text"
@@ -201,8 +236,7 @@ const Carrinho = ({ isOpen, onClose }: CarrinhoProps) => {
             }
             required
           />
-          {errors.endereco && <span>Campo obrigatório</span>}
-          <label htmlFor="cidade">Cidade</label>
+          <label htmlFor="cidade">Cidade *</label>
           <FormularioInput
             id="cidade"
             type="text"
@@ -212,30 +246,31 @@ const Carrinho = ({ isOpen, onClose }: CarrinhoProps) => {
             }
             required
           />
-          {errors.cidade && <span>Campo obrigatório</span>}
-          <label htmlFor="cep">CEP</label>
-          <FormularioInput
-            id="cep"
-            type="text"
-            value={deliveryData.cep}
-            onChange={(e) =>
-              setDeliveryData({ ...deliveryData, cep: e.target.value })
-            }
-            required
-          />
-          {errors.cep && <span>Campo obrigatório</span>}
-          <label htmlFor="numero">Número</label>
-          <FormularioInput
-            id="numero"
-            type="text"
-            value={deliveryData.numero}
-            onChange={(e) =>
-              setDeliveryData({ ...deliveryData, numero: e.target.value })
-            }
-            required
-          />
-          {errors.numero && <span>Campo obrigatório</span>}
-          <label htmlFor="telefone">Telefone</label>
+          <CepNumero>
+            <div>
+              <label htmlFor="cep">CEP *</label>
+              <FormularioInput
+                id="cep"
+                type="text"
+                value={deliveryData.cep}
+                onChange={handleCepChange}
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="numero">Número *</label>
+              <FormularioInput
+                id="numero"
+                type="text"
+                value={deliveryData.numero}
+                onChange={(e) =>
+                  setDeliveryData({ ...deliveryData, numero: e.target.value })
+                }
+                required
+              />
+            </div>
+          </CepNumero>
+          <label htmlFor="telefone">Telefone *</label>
           <FormularioInput
             id="telefone"
             type="text"
@@ -243,7 +278,6 @@ const Carrinho = ({ isOpen, onClose }: CarrinhoProps) => {
             onChange={handleTelefoneChange}
             required
           />
-          {errors.telefone && <span>Campo obrigatório</span>}
           <label htmlFor="complemento">Complemento (opcional)</label>
           <FormularioInput
             id="complemento"
@@ -253,6 +287,9 @@ const Carrinho = ({ isOpen, onClose }: CarrinhoProps) => {
               setDeliveryData({ ...deliveryData, complemento: e.target.value })
             }
           />
+          {errors.telefone && (
+            <span>Os campos marcados com * são obrigatórios</span>
+          )}
           <FormularioButton
             onClick={() => {
               if (validateDeliveryForm()) {
@@ -293,7 +330,7 @@ const Carrinho = ({ isOpen, onClose }: CarrinhoProps) => {
       ) : (
         <FormularioEntregaContainer>
           <h3>Pagamento</h3>
-          <label htmlFor="nomeCartao">Nome no Cartão</label>
+          <label htmlFor="nomeCartao">Nome no Cartão *</label>
           <FormularioInput
             id="nomeCartao"
             type="text"
@@ -303,8 +340,7 @@ const Carrinho = ({ isOpen, onClose }: CarrinhoProps) => {
             }
             required
           />
-          {errors.nomeCartao && <span>Campo obrigatório</span>}
-          <label htmlFor="numeroCartao">Número do Cartão</label>
+          <label htmlFor="numeroCartao">Número do Cartão *</label>
           <FormularioInput
             id="numeroCartao"
             type="text"
@@ -314,8 +350,7 @@ const Carrinho = ({ isOpen, onClose }: CarrinhoProps) => {
             }
             required
           />
-          {errors.numeroCartao && <span>Campo obrigatório</span>}
-          <label htmlFor="cvv">CVV</label>
+          <label htmlFor="cvv">CVV *</label>
           <FormularioInput
             id="cvv"
             type="text"
@@ -325,8 +360,7 @@ const Carrinho = ({ isOpen, onClose }: CarrinhoProps) => {
             }
             required
           />
-          {errors.cvv && <span>Campo obrigatório</span>}
-          <label htmlFor="mesVencimento">Mês de Vencimento</label>
+          <label htmlFor="mesVencimento">Mês de Vencimento *</label>
           <FormularioInput
             id="mesVencimento"
             type="text"
@@ -336,8 +370,7 @@ const Carrinho = ({ isOpen, onClose }: CarrinhoProps) => {
             }
             required
           />
-          {errors.mesVencimento && <span>Campo obrigatório</span>}
-          <label htmlFor="anoVencimento">Ano de Vencimento</label>
+          <label htmlFor="anoVencimento">Ano de Vencimento *</label>
           <FormularioInput
             id="anoVencimento"
             type="text"
@@ -347,7 +380,9 @@ const Carrinho = ({ isOpen, onClose }: CarrinhoProps) => {
             }
             required
           />
-          {errors.anoVencimento && <span>Campo obrigatório</span>}
+          {errors.anoVencimento && (
+            <span>Os campos marcados com * são obrigatórios</span>
+          )}
           <FormularioButton onClick={handleFinalizarPagamento}>
             Finalizar pagamento
           </FormularioButton>
