@@ -3,6 +3,8 @@ import { cores } from '../../styles'
 
 export const Items = styled.ul`
   display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
 `
 
 export const Action = styled.div`
@@ -16,10 +18,10 @@ export const Action = styled.div`
   align-items: center;
   justify-content: center;
   opacity: 0;
+  transition: opacity 0.5s ease;
 `
 
 export const Item = styled.li`
-  margin-right: 16px;
   position: relative;
 
   > img {
@@ -62,27 +64,35 @@ export const Modal = styled.div`
     background-color: rgba(0, 0, 0, 0.73);
   }
 `
+
 export const ModalContent = styled.div`
   max-width: 960px;
   position: relative;
   z-index: 1;
+
   header {
     display: flex;
-    margin-bottom: 24px;
     justify-content: space-between;
+    margin-bottom: 24px;
 
     h4 {
       font-size: 18px;
       font-weight: bold;
     }
   }
+
+  > img {
+    width: 100%;
+  }
+
   img,
   iframe {
     display: block;
     max-width: 100%;
   }
+
   iframe {
     width: 100%;
-    height: 560px;
+    height: 480px;
   }
 `

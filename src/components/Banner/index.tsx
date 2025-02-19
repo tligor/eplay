@@ -1,19 +1,14 @@
-import { Imagem, Precos, Titulo } from './styles'
-import { Game } from '../../pages/Home'
-import { useEffect, useState } from 'react'
-import { formataPreco } from '../ProductsList'
-import bannerImg from '../../assets/images/banner-homem-aranha.png'
+import { Imagem, Titulo, Precos } from './styles'
+
 import Tag from '../Tag'
 import Button from '../Button'
 
-const Banner = () => {
-  const [game, setGame] = useState<Game>()
+import { formataPreco } from '../ProductsList'
 
-  useEffect(() => {
-    fetch('https://fake-api-tau.vercel.app/api/eplay/destaque')
-      .then((res) => res.json())
-      .then((res) => setGame(res))
-  }, [])
+import { useGetFeaturedGameQuery } from '../../services/api'
+
+const Banner = () => {
+  const { data: game } = useGetFeaturedGameQuery()
 
   if (!game) {
     return <h3>Carregando...</h3>
@@ -22,19 +17,18 @@ const Banner = () => {
   return (
     <Imagem style={{ backgroundImage: `url(${game.media.cover})` }}>
       <div className="container">
-        <Tag size="big">Destaque</Tag>
+        <Tag size="big">Destaque do dia</Tag>
         <div>
           <Titulo>{game.name}</Titulo>
           <Precos>
-            De <span>{formataPreco(game?.prices.old)}</span>
-            <br />
-            Por apenas {formataPreco(game?.prices.current)}
+            De <span>{formataPreco(game.prices.old)}</span> <br />
+            por apenas {formataPreco(game.prices.current)}
           </Precos>
         </div>
         <Button
           type="link"
-          to="/produto"
-          title="Clique aqui para aproveitar a oferta"
+          to={`/product/${game.id}`}
+          title="Clique aqui para aproveitar esta oferta"
         >
           Aproveitar
         </Button>
