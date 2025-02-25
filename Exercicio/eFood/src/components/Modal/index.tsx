@@ -11,6 +11,7 @@ import {
   CloseButton
 } from './styles'
 import btnclose from '../../assets/images.nova/close.svg'
+import React from 'react'
 
 type ModalProps = {
   isOpen: boolean

@@ -20,6 +20,7 @@ import {
   MensagemCarrinhoVazio,
   CepNumero
 } from './styles'
+import React from 'react'
 
 interface CarrinhoProps {
   isOpen: boolean
@@ -167,7 +168,62 @@ const Carrinho = ({ isOpen, onClose }: CarrinhoProps) => {
       setOrderCompleted(true)
     }
   }
+  const handleFinalizarPedido = async () => {
+    if (!validatePaymentForm()) return // Valida os campos de pagamento
 
+    try {
+      // Preparar os dados do pedido
+      const pedido = {
+        products: itens.map((item) => ({
+          id: parseInt(item.id), // Converte o ID para número
+          price: item.preco
+        })),
+        delivery: {
+          receiver: deliveryData.nome,
+          address: {
+            description: deliveryData.endereco,
+            city: deliveryData.cidade,
+            zipCode: deliveryData.cep,
+            number: parseInt(deliveryData.numero), // Converte o número para inteiro
+            complement: deliveryData.complemento
+          }
+        },
+        payment: {
+          card: {
+            name: paymentData.nomeCartao,
+            number: paymentData.numeroCartao,
+            code: parseInt(paymentData.cvv), // Converte o CVV para inteiro
+            expires: {
+              month: parseInt(paymentData.mesVencimento), // Converte o mês para inteiro
+              year: parseInt(paymentData.anoVencimento) // Converte o ano para inteiro
+            }
+          }
+        }
+      }
+
+      const response = await fetch(
+        'https://fake-api-tau.vercel.app/api/efood/checkout',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(pedido)
+        }
+      )
+
+      if (!response.ok) {
+        throw new Error('Erro ao finalizar o pedido')
+      }
+
+      // Limpar o carrinho e exibir a mensagem de sucesso
+      dispatch(limparCarrinho())
+      setOrderCompleted(true)
+    } catch (error) {
+      console.error('Erro ao finalizar o pedido:', error)
+      alert('Erro ao finalizar o pedido. Tente novamente.')
+    }
+  }
   // Função para concluir o pedido
   const handleConcluirPedido = () => {
     dispatch(limparCarrinho())
@@ -383,7 +439,7 @@ const Carrinho = ({ isOpen, onClose }: CarrinhoProps) => {
           {errors.anoVencimento && (
             <span>Os campos marcados com * são obrigatórios</span>
           )}
-          <FormularioButton onClick={handleFinalizarPagamento}>
+          <FormularioButton onClick={handleFinalizarPedido}>
             Finalizar pagamento
           </FormularioButton>
           <FormularioButton onClick={() => setShowPaymentForm(false)}>
